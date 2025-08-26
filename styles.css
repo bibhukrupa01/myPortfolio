@@ -444,3 +444,34 @@ footer {
         padding: 3rem 0;
     }
 }
+
+
+/* ============================= */
+/* Spline Background Integration */
+/* ============================= */
+
+/* Ensure body takes full height */
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Make Spline viewer fill the screen */
+spline-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Keeps it behind everything */
+}
+
+/* Make sure main content stays above */
+.container,
+.hero,
+section,
+footer,
+nav {
+  position: relative;
+  z-index: 1;
+}
