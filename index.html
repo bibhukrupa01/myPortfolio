@@ -3,261 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bibhu Krupa Pradhan - Full Stack Developer</title>
+    <title>Bibhu Krupa Pradhan - Full Stack Web Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-         <!-- Spline viewer -->
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.51/build/spline-viewer.js"></script>
-
-        <!-- Spline Background -->
-    <spline-viewer url="https://prod.spline.design/m2smD2tDPSs-c3yo/scene.splinecode"></spline-viewer>
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <a href="#home" class="logo">BKP</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+    <nav class="nav" id="navigation">
+        <div class="nav__container">
+            <a href="#home" class="nav__logo">BKP</a>
+            <ul class="nav__menu" id="navMenu">
+                <li><a href="#home" class="nav__link">Home</a></li>
+                <li><a href="#about" class="nav__link">About</a></li>
+                <li><a href="#portfolio" class="nav__link">Portfolio</a></li>
+                <li><a href="#services" class="nav__link">Services</a></li>
+                <li><a href="#experience" class="nav__link">Experience</a></li>
+                <li><a href="#testimonials" class="nav__link">Testimonials</a></li>
+                <li><a href="#contact" class="nav__link">Contact</a></li>
             </ul>
+            <div class="nav__toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Bibhu Krupa Pradhan</h1>
-            <p class="subtitle">Full Stack Web Developer</p>
-            <p class="description">
-                Passionate about creating innovative web solutions with modern technologies. 
-                I specialize in both frontend and backend development, bringing ideas to life 
-                through clean, efficient code and intuitive user experiences.
-            </p>
-            <a href="#contact" class="cta-button">Get In Touch</a>
+    <section class="hero" id="home">
+        <div class="hero__container">
+            <div class="hero__content">
+                <div class="hero__text">
+                    <h1 class="hero__name">Bibhu Krupa Pradhan</h1>
+                    <p class="hero__title">Full Stack Web Developer</p>
+                    <p class="hero__tagline">Crafting Digital Experiences with Precision</p>
+                    <a href="#contact" class="btn btn--primary hero__cta">Let's Work Together</a>
+                </div>
+            </div>
+            <div class="hero__3d" id="hero3d"></div>
+        </div>
+        <div class="hero__scroll">
+            <span>Scroll</span>
+            <div class="hero__scroll-line"></div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section class="about" id="about">
         <div class="container">
-            <h2 class="section-title fade-in">About Me</h2>
-            <div class="about-content fade-in">
-                <div class="about-image">
-                    <img src="profile-photo.jpg" alt="Bibhu Krupa Pradhan" class="profile-pic">
+            <div class="about__grid">
+                <div class="about__content">
+                    <h2 class="section__title">About Me</h2>
+                    <p class="about__description">Passionate about creating innovative web solutions with modern technologies. I specialize in both frontend and backend development, bringing ideas to life through clean, efficient code and intuitive user experiences.</p>
+                    <div class="about__info">
+                        <div class="about__item">
+                            <span class="about__label">Location</span>
+                            <span class="about__value">Noida, Uttarpradesh</span>
+                        </div>
+                        <div class="about__item">
+                            <span class="about__label">Email</span>
+                            <span class="about__value">bibhukrupa5@gmail.com</span>
+                        </div>
+                        <div class="about__item">
+                            <span class="about__label">Phone</span>
+                            <span class="about__value">+91 1234567890</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="about-text">
-                    <p>
-                        Hello! I'm a dedicated Full Stack Web Developer with a passion for creating 
-                        exceptional digital experiences. With expertise spanning both frontend and 
-                        backend technologies, I bring a comprehensive approach to web development.
-                    </p>
-                    <p>
-                        My journey in programming has equipped me with proficiency in multiple 
-                        programming languages and frameworks. I thrive on solving complex problems 
-                        and transforming creative ideas into functional, scalable web applications.
-                    </p>
-                    <p>
-                        When I'm not coding, I enjoy staying updated with the latest tech trends, 
-                        contributing to open-source projects. 
-                        I believe in writing clean, maintainable code and creating user-centric solutions.
-                    </p>
+                <div class="about__skills">
+                    <h3 class="about__skills-title">Skills</h3>
+                    <div class="skills" id="skillsContainer"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
         <div class="container">
-            <h2 class="section-title fade-in">My Skills</h2>
-            <div class="skills-grid fade-in">
-                <div class="skill-category">
-                    <h3>Frontend Technologies</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Responsive Design</span>                      
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Backend Technologies</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Flask/Django</span>
-                        <span class="skill-tag">API Development</span>
-                        <span class="skill-tag">Database Design</span>
-                        <span class="skill-tag">Server Management</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Programming Languages</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">C</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Data Structures</span>
-                        <span class="skill-tag">Algorithms</span>
-                    </div>
-                </div>
+            <h2 class="section__title">Portfolio</h2>
+            <div class="portfolio__filter">
+                <button class="portfolio__filter-btn active" data-filter="all">All</button>
+                <button class="portfolio__filter-btn" data-filter="featured">Featured</button>
+                <button class="portfolio__filter-btn" data-filter="web">Web Development</button>
+                <button class="portfolio__filter-btn" data-filter="3d">3D Experience</button>
             </div>
+            <div class="portfolio__grid" id="portfolioGrid"></div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
+    <!-- Services Section -->
+    <section class="services" id="services">
         <div class="container">
-            <h2 class="section-title fade-in">Featured Projects</h2>
-            <div class="projects-grid fade-in">
-                <div class="project-card">
-                    <h3>Netflix Clone</h3>
-                    <p>
-                        Fully functional clone of the most popular OTT platform. With interactive design and video playback in background.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>                       
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h3>Flipkart Clone</h3>
-                    <p>
-                        Exact flipkart clone containing every details of original flipkart company
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">HTML</span>
-                    </div>
-                </div>
-                <!-- <div class="project-card">
-                    <h3>Weather Dashboard</h3>
-                    <p>
-                        Dynamic weather application that fetches real-time weather data from APIs 
-                        and displays interactive charts and forecasts with a responsive design.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">API Integration</span>
-                    </div>
-                </div> -->
-                <div class="project-card">
-                    <h3>Dev-opify</h3>
-                    <p>
-                        A fully functional website(company) that provides software as a solution. Here, We provide website, Mobile application as a solution to your problem.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                </div>
-                <!-- <div class="project-card">
-                    <h3>Algorithm Visualizer</h3>
-                    <p>
-                        Educational tool that visualizes sorting and searching algorithms in real-time, 
-                        helping students understand complex algorithmic concepts through interactive animations.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">C++</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                    </div>
-                </div> -->
-                <div class="project-card">
-                    <h3>Zero.hour</h3>
-                    <p>
-                        An mobile application that compares real-time prices of the rides available on different platforms like Uber, Ola, Rapido, etc.
-                        It helps you to choose the best ride at the best price.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">C</span>
-                        <span class="tech-tag">C++</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Java</span>
-                    </div>
-                </div>
+            <h2 class="section__title">Services</h2>
+            <div class="services__grid" id="servicesGrid"></div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <h2 class="section__title">Experience</h2>
+            <div class="timeline" id="timelineContainer"></div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section__title">Testimonials</h2>
+            <div class="testimonials__slider" id="testimonialsSlider"></div>
+            <div class="testimonials__controls">
+                <button class="testimonials__btn testimonials__btn--prev" id="testPrev">‹</button>
+                <button class="testimonials__btn testimonials__btn--next" id="testNext">›</button>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title fade-in">Get In Touch</h2>
-            <div class="contact-content fade-in">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>bibhukrupa5@email.com</p>
+            <h2 class="section__title">Get In Touch</h2>
+            <div class="contact__grid">
+                <div class="contact__info">
+                    <h3 class="contact__subtitle">Let's create something amazing together</h3>
+                    <div class="contact__details">
+                        <div class="contact__item">
+                            <div class="contact__icon">📧</div>
+                            <div class="contact__text">
+                                <span class="contact__label">Email</span>
+                                <a href="mailto:bibhukrupa5@gmail.com">bibhukrupa5@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact__item">
+                            <div class="contact__icon">📱</div>
+                            <div class="contact__text">
+                                <span class="contact__label">Phone</span>
+                                <a href="tel:+91 1234567890">+91 1234567890</a>
+                            </div>
+                        </div>
+                        <div class="contact__item">
+                            <div class="contact__icon">📍</div>
+                            <div class="contact__text">
+                                <span class="contact__label">Location</span>
+                                <span>Noida, Uttarpradesh</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>+91 8249101357</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <h4>Location</h4>
-                            <p>NRI City ,GN</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">💼</div>
-                        <div>
-                            <h4>LinkedIn</h4>
-                            <li>
-                                <a href="https://www.linkedin.com/in/bibhu-krupa-pradhan-45b021329/" target="_blank">www.linkedin.com/in/bibhu-krupa-pradhan/</a>
-                            </li>
-                        </div>
+                    <div class="contact__social">
+                        <a href="https://github.com/bibhukrupa01" target="_blank" class="contact__social-link">GitHub</a>
+                        <a href="https://www.linkedin.com/in/bibhu-krupa-pradhan-45b021329/" target="_blank" class="contact__social-link">LinkedIn</a>
+                        <a href="https://twitter.com/bibhukrupa5
+                        " target="_blank" class="contact__social-link">Twitter</a>
+                        <!-- <a href="https://dribbble.com/alexkane" target="_blank" class="contact__social-link">Dribbble</a> -->
                     </div>
                 </div>
-                <form class="contact-form">
+                <form class="contact__form" id="contactForm">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required>
+                        <label class="form-label">Subject</label>
+                        <input type="text" class="form-control" name="subject" required>
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <label class="form-label">Message</label>
+                        <textarea class="form-control" name="message" rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
+                    <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Bibhu Krupa Pradhan. All rights reserved. | Full Stack Web Developer</p>
+            <div class="footer__content">
+                <p>&copy; 2025 Bibhu Krupa Pradhan. All rights reserved.</p>
+                <div class="footer__social">
+                    <a href="https://github.com/alexkane" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/alexkane" target="_blank">LinkedIn</a>
+                    <a href="https://twitter.com/alexkane" target="_blank">Twitter</a>
+                </div>
+            </div>
+            <button class="back-to-top" id="backToTop">↑</button>
         </div>
     </footer>
 
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader__spinner"></div>
+        <p class="loader__text">Almost Ready...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
