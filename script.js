@@ -15,11 +15,11 @@ const portfolioData = {
     }
   },
   skills: [
-    {"name": "HTML", "level": 90, "category": "Frontend"},
-    {"name": "CSS", "level": 88, "category": "Frontend"},
-    {"name": "JavaScript", "level": 80, "category": "Frontend"},
-    {"name": "React.js", "level": 70, "category": "Frontend"},
-    {"name": "Three.js", "level": 40, "category": "3D Graphics"},
+    { "name": "HTML", "level": 90, "category": "Frontend" },
+    { "name": "CSS", "level": 88, "category": "Frontend" },
+    { "name": "JavaScript", "level": 80, "category": "Frontend" },
+    { "name": "React.js", "level": 70, "category": "Frontend" },
+    { "name": "Three.js", "level": 40, "category": "3D Graphics" },
     // {"name": "GSAP", "level": 92, "category": "Animation"},
     // {"name": "TypeScript", "level": 85, "category": "Language"},
     // {"name": "Blender", "level": 80, "category": "3D Modeling"},
@@ -51,8 +51,8 @@ const portfolioData = {
       id: 1,
       title: "Amazon Clone",
       description: "A replica of Amazon built while learning basics of HTML, CSS and JS.",
-      image: "/amazon.png",
-      technologies: ["HTML", "CSS" , "JavaScript"],
+      image: "amazon.png",
+      technologies: ["HTML", "CSS", "JavaScript"],
       category: "Web Page",
       link: "https://www.amazon.in/",
       featured: false
@@ -61,8 +61,8 @@ const portfolioData = {
       id: 2,
       title: "Netflix Clone",
       description: "Replica of Netlfix using only HTML, CSS and JS.",
-      image: "/netflix.png",
-      technologies: ["HTML", "CSS" , "JavaScript"],
+      image: "netflix.png",
+      technologies: ["HTML", "CSS", "JavaScript"],
       category: "Web Page",
       link: "https://www.netflix.com/in/",
       featured: false
@@ -71,8 +71,8 @@ const portfolioData = {
       id: 3,
       title: "To-Do List",
       description: "To-Do list webpage where one can set his/her goals.",
-      image: "/toDoList.png",
-      technologies: ["HTML", "CSS" , "JavaScript"],
+      image: "toDoList.png",
+      technologies: ["HTML", "CSS", "JavaScript"],
       category: "Web Application",
       link: "https://to-do-list04.netlify.app/",
       featured: false
@@ -81,8 +81,8 @@ const portfolioData = {
       id: 4,
       title: "University Portal",
       description: "University portal website for students where he/she can get everything including notes and attendace percentage.",
-      image: "/uniconnect.png",
-      technologies: ["HTML", "CSS" , "JavaScript" , "Firebase"],
+      image: "uniconnect.png",
+      technologies: ["HTML", "CSS", "JavaScript", "Firebase"],
       category: "Blockchain",
       link: "https://uniconnect.tech",
       featured: false
@@ -166,11 +166,11 @@ const portfolioData = {
       company: "Dev-opify",
       period: "2025 - Present",
       description: "Built scalable  applications from concept to deployment using modern tech stack.",
-    //   achievements: [
-    //     "Architected microservices handling 1M+ daily requests",
-    //     "Implemented real-time features using WebSocket technology",
-    //     "Reduced server costs by 35% through optimization"
-    //   ]
+      //   achievements: [
+      //     "Architected microservices handling 1M+ daily requests",
+      //     "Implemented real-time features using WebSocket technology",
+      //     "Reduced server costs by 35% through optimization"
+      //   ]
     }
   ],
   testimonials: [
@@ -228,21 +228,21 @@ function waitForGSAP() {
 }
 
 // DOM Content Loaded
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async function () {
   // Wait for GSAP to load
   await waitForGSAP();
-  
+
   // Initialize loading screen
   initLoader();
-  
+
   // Initialize navigation
   initNavigation();
-  
+
   // Initialize 3D scene after a short delay to ensure container is ready
   setTimeout(() => {
     init3DScene();
   }, 100);
-  
+
   // Initialize content
   initSkills();
   initPortfolio();
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   initTestimonials();
   initContact();
   initBackToTop();
-  
+
   // Hide loader after everything is initialized
   setTimeout(() => {
     hideLoader();
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 // Loading Screen
 function initLoader() {
   const loader = document.getElementById('loader');
-  
+
   // Add some loading animation if GSAP is available
   if (isGSAPLoaded) {
     gsap.to('.loader__spinner', {
@@ -275,7 +275,7 @@ function initLoader() {
 
 function hideLoader() {
   const loader = document.getElementById('loader');
-  
+
   if (isGSAPLoaded) {
     gsap.to(loader, {
       opacity: 0,
@@ -300,13 +300,13 @@ function initNavigation() {
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
   const navLinks = document.querySelectorAll('.nav__link');
-  
+
   // Mobile menu toggle
   navToggle?.addEventListener('click', () => {
     navMenu.classList.toggle('active');
     navToggle.classList.toggle('active');
   });
-  
+
   // Close menu when clicking on links
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -314,21 +314,21 @@ function initNavigation() {
       navToggle.classList.remove('active');
     });
   });
-  
+
   // Smooth scrolling for navigation links
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = link.getAttribute('href');
       const targetSection = document.querySelector(targetId);
-      
+
       if (targetSection) {
         // Use native smooth scrolling as fallback
-        targetSection.scrollIntoView({ 
+        targetSection.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
         });
-        
+
         // GSAP smooth scroll if available
         if (isGSAPLoaded && typeof ScrollToPlugin !== 'undefined') {
           gsap.to(window, {
@@ -343,7 +343,7 @@ function initNavigation() {
       }
     });
   });
-  
+
   // Navigation background on scroll
   window.addEventListener('scroll', () => {
     const nav = document.querySelector('.nav');
@@ -359,16 +359,16 @@ function initNavigation() {
 function init3DScene() {
   const container = document.getElementById('hero3d');
   if (!container || !window.THREE) return;
-  
+
   // Scene setup
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  
+
   renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.setClearColor(0x000000, 0);
   container.appendChild(renderer.domElement);
-  
+
   // Create floating cubes
   const geometry = new THREE.BoxGeometry(1, 1, 1);
   const materials = [
@@ -376,7 +376,7 @@ function init3DScene() {
     new THREE.MeshBasicMaterial({ color: 0xc0c0c0, wireframe: true }),
     new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true })
   ];
-  
+
   for (let i = 0; i < 15; i++) {
     const cube = new THREE.Mesh(geometry, materials[i % materials.length]);
     cube.position.set(
@@ -393,16 +393,16 @@ function init3DScene() {
     cubes.push(cube);
     scene.add(cube);
   }
-  
+
   // Create particle system
   const particleGeometry = new THREE.BufferGeometry();
   const particleCount = 100;
   const positions = new Float32Array(particleCount * 3);
-  
+
   for (let i = 0; i < particleCount * 3; i++) {
     positions[i] = (Math.random() - 0.5) * 50;
   }
-  
+
   particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   const particleMaterial = new THREE.PointsMaterial({
     color: 0xffd700,
@@ -410,32 +410,32 @@ function init3DScene() {
     transparent: true,
     opacity: 0.6
   });
-  
+
   const particleSystem = new THREE.Points(particleGeometry, particleMaterial);
   scene.add(particleSystem);
-  
+
   camera.position.z = 15;
-  
+
   // Animation loop
   function animate() {
     requestAnimationFrame(animate);
-    
+
     // Rotate cubes
     cubes.forEach((cube, index) => {
       cube.rotation.x += 0.01 + index * 0.001;
       cube.rotation.y += 0.01 + index * 0.001;
       cube.position.y += Math.sin(Date.now() * 0.001 + index) * 0.01;
     });
-    
+
     // Rotate particle system
     particleSystem.rotation.x += 0.001;
     particleSystem.rotation.y += 0.002;
-    
+
     renderer.render(scene, camera);
   }
-  
+
   animate();
-  
+
   // Handle resize
   window.addEventListener('resize', () => {
     if (container.clientWidth && container.clientHeight) {
@@ -450,7 +450,7 @@ function init3DScene() {
 function initSkills() {
   const skillsContainer = document.getElementById('skillsContainer');
   if (!skillsContainer) return;
-  
+
   portfolioData.skills.forEach(skill => {
     const skillElement = document.createElement('div');
     skillElement.className = 'skill';
@@ -471,18 +471,18 @@ function initSkills() {
 function initPortfolio() {
   const portfolioGrid = document.getElementById('portfolioGrid');
   const filterBtns = document.querySelectorAll('.portfolio__filter-btn');
-  
+
   if (!portfolioGrid) return;
-  
+
   // Render portfolio items
   function renderPortfolio(projects = portfolioData.projects) {
     portfolioGrid.innerHTML = '';
-    
+
     projects.forEach(project => {
       const projectElement = document.createElement('div');
       projectElement.className = `portfolio__item ${project.featured ? 'featured' : ''}`;
       projectElement.setAttribute('data-category', project.category.toLowerCase().replace(/[^a-z0-9]/g, ''));
-      
+
       projectElement.innerHTML = `
         <img src="${project.image}" alt="${project.title}" class="portfolio__image" loading="lazy">
         <div class="portfolio__content">
@@ -494,67 +494,67 @@ function initPortfolio() {
           <a href="${project.link}" class="portfolio__link">View Project →</a>
         </div>
       `;
-      
+
       portfolioGrid.appendChild(projectElement);
     });
-    
+
     // Add hover effects
     const portfolioItems = document.querySelectorAll('.portfolio__item');
     portfolioItems.forEach(item => {
       item.addEventListener('mouseenter', () => {
         if (isGSAPLoaded) {
-          gsap.to(item, { 
-            y: -10, 
-            rotationX: 5, 
-            duration: 0.3, 
-            ease: "power2.out" 
+          gsap.to(item, {
+            y: -10,
+            rotationX: 5,
+            duration: 0.3,
+            ease: "power2.out"
           });
         }
       });
-      
+
       item.addEventListener('mouseleave', () => {
         if (isGSAPLoaded) {
-          gsap.to(item, { 
-            y: 0, 
-            rotationX: 0, 
-            duration: 0.3, 
-            ease: "power2.out" 
+          gsap.to(item, {
+            y: 0,
+            rotationX: 0,
+            duration: 0.3,
+            ease: "power2.out"
           });
         }
       });
     });
   }
-  
+
   // Filter functionality
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       // Update active button
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      
+
       const filter = btn.getAttribute('data-filter');
       let filteredProjects;
-      
+
       if (filter === 'all') {
         filteredProjects = portfolioData.projects;
       } else if (filter === 'featured') {
         filteredProjects = portfolioData.projects.filter(p => p.featured);
       } else if (filter === 'web') {
-        filteredProjects = portfolioData.projects.filter(p => 
-          p.category.toLowerCase().includes('web') || 
+        filteredProjects = portfolioData.projects.filter(p =>
+          p.category.toLowerCase().includes('web') ||
           p.category.toLowerCase().includes('ai')
         );
       } else if (filter === '3d') {
-        filteredProjects = portfolioData.projects.filter(p => 
-          p.category.toLowerCase().includes('3d') || 
+        filteredProjects = portfolioData.projects.filter(p =>
+          p.category.toLowerCase().includes('3d') ||
           p.category.toLowerCase().includes('ar')
         );
       }
-      
+
       renderPortfolio(filteredProjects);
     });
   });
-  
+
   // Initial render
   renderPortfolio();
 }
@@ -563,7 +563,7 @@ function initPortfolio() {
 function initServices() {
   const servicesGrid = document.getElementById('servicesGrid');
   if (!servicesGrid) return;
-  
+
   portfolioData.services.forEach(service => {
     const serviceElement = document.createElement('div');
     serviceElement.className = 'service';
@@ -584,7 +584,7 @@ function initServices() {
 function initExperience() {
   const timelineContainer = document.getElementById('timelineContainer');
   if (!timelineContainer) return;
-  
+
   portfolioData.experience.forEach((exp, index) => {
     const timelineItem = document.createElement('div');
     timelineItem.className = 'timeline__item';
@@ -606,13 +606,13 @@ function initTestimonials() {
   const testimonialsSlider = document.getElementById('testimonialsSlider');
   const prevBtn = document.getElementById('testPrev');
   const nextBtn = document.getElementById('testNext');
-  
+
   if (!testimonialsSlider) return;
-  
+
   // Render testimonials
   function renderTestimonials() {
     testimonialsSlider.innerHTML = '';
-    
+
     portfolioData.testimonials.forEach((testimonial, index) => {
       const testimonialElement = document.createElement('div');
       testimonialElement.className = `testimonial ${index === 0 ? 'active' : ''}`;
@@ -627,11 +627,11 @@ function initTestimonials() {
       testimonialsSlider.appendChild(testimonialElement);
     });
   }
-  
+
   // Show testimonial
   function showTestimonial(index) {
     const testimonials = document.querySelectorAll('.testimonial');
-    
+
     testimonials.forEach((testimonial, i) => {
       if (i === index) {
         testimonial.style.display = 'block';
@@ -648,24 +648,24 @@ function initTestimonials() {
       }
     });
   }
-  
+
   // Navigation
   nextBtn?.addEventListener('click', () => {
     currentTestimonial = (currentTestimonial + 1) % portfolioData.testimonials.length;
     showTestimonial(currentTestimonial);
   });
-  
+
   prevBtn?.addEventListener('click', () => {
     currentTestimonial = currentTestimonial === 0 ? portfolioData.testimonials.length - 1 : currentTestimonial - 1;
     showTestimonial(currentTestimonial);
   });
-  
+
   // Auto-rotate testimonials
   setInterval(() => {
     currentTestimonial = (currentTestimonial + 1) % portfolioData.testimonials.length;
     showTestimonial(currentTestimonial);
   }, 5000);
-  
+
   renderTestimonials();
   showTestimonial(0);
 }
@@ -673,32 +673,32 @@ function initTestimonials() {
 // Contact Form
 function initContact() {
   const contactForm = document.getElementById('contactForm');
-  
+
   contactForm?.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     // Get form data
     const formData = new FormData(contactForm);
     const data = Object.fromEntries(formData);
-    
+
     // Basic validation
     if (!data.name || !data.email || !data.message) {
       alert('Please fill in all required fields.');
       return;
     }
-    
+
     // Simulate form submission
     const submitBtn = contactForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
-    
+
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
-    
+
     setTimeout(() => {
-      alert('Thank you for your message! I\'ll get back to you soon.');
       contactForm.reset();
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
+      alert('Thank you for your message! I\'ll get back to you soon.');
     }, 2000);
   });
 }
@@ -706,23 +706,23 @@ function initContact() {
 // Main Animations
 function initMainAnimations() {
   if (!isGSAPLoaded) return;
-  
+
   // Hero animations
   const heroTimeline = gsap.timeline();
   heroTimeline
-    .fromTo('.hero__name', 
+    .fromTo('.hero__name',
       { opacity: 0, y: 100 },
       { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
     )
-    .fromTo('.hero__title', 
+    .fromTo('.hero__title',
       { opacity: 0, y: 50 },
       { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.5"
     )
-    .fromTo('.hero__tagline', 
+    .fromTo('.hero__tagline',
       { opacity: 0, y: 30 },
       { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.3"
     )
-    .fromTo('.hero__cta', 
+    .fromTo('.hero__cta',
       { opacity: 0, scale: 0.8 },
       { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, "-=0.2"
     );
@@ -731,7 +731,7 @@ function initMainAnimations() {
 // Scroll Animations
 function initScrollAnimations() {
   if (!isGSAPLoaded) return;
-  
+
   // Section titles
   gsap.utils.toArray('.section__title').forEach(title => {
     gsap.fromTo(title,
@@ -749,7 +749,7 @@ function initScrollAnimations() {
       }
     );
   });
-  
+
   // Skills animation
   gsap.utils.toArray('.skill').forEach((skill, index) => {
     gsap.fromTo(skill,
@@ -766,11 +766,11 @@ function initScrollAnimations() {
         }
       }
     );
-    
+
     // Animate progress bars
     const progressBar = skill.querySelector('.skill__progress');
     const width = progressBar.getAttribute('data-width');
-    
+
     gsap.fromTo(progressBar,
       { width: '0%' },
       {
@@ -784,7 +784,7 @@ function initScrollAnimations() {
       }
     );
   });
-  
+
   // Portfolio items
   gsap.utils.toArray('.portfolio__item').forEach((item, index) => {
     gsap.fromTo(item,
@@ -803,7 +803,7 @@ function initScrollAnimations() {
       }
     );
   });
-  
+
   // Services
   gsap.utils.toArray('.service').forEach((service, index) => {
     gsap.fromTo(service,
@@ -822,15 +822,15 @@ function initScrollAnimations() {
       }
     );
   });
-  
+
   // Timeline items
   gsap.utils.toArray('.timeline__item').forEach((item, index) => {
     const isEven = index % 2 === 0;
     gsap.fromTo(item,
-      { 
-        opacity: 0, 
+      {
+        opacity: 0,
         x: isEven ? 100 : -100,
-        y: 50 
+        y: 50
       },
       {
         opacity: 1,
@@ -845,7 +845,7 @@ function initScrollAnimations() {
       }
     );
   });
-  
+
   // Contact sections
   gsap.fromTo('.contact__form',
     { opacity: 0, x: 50 },
@@ -860,7 +860,7 @@ function initScrollAnimations() {
       }
     }
   );
-  
+
   gsap.fromTo('.contact__info',
     { opacity: 0, x: -50 },
     {
@@ -880,7 +880,7 @@ function initScrollAnimations() {
 function initBackToTop() {
   const backToTopBtn = document.getElementById('backToTop');
   if (!backToTopBtn) return;
-  
+
   // Show/hide button based on scroll position
   window.addEventListener('scroll', () => {
     if (window.scrollY > 500) {
@@ -889,7 +889,7 @@ function initBackToTop() {
       backToTopBtn.classList.remove('visible');
     }
   });
-  
+
   // Smooth scroll to top
   backToTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -916,7 +916,7 @@ document.addEventListener('mousemove', (e) => {
     `;
     document.body.appendChild(cursor);
   }
-  
+
   cursor.style.left = e.clientX + 'px';
   cursor.style.top = e.clientY + 'px';
 });
@@ -924,7 +924,7 @@ document.addEventListener('mousemove', (e) => {
 // Add hover effects to interactive elements
 document.addEventListener('DOMContentLoaded', () => {
   const interactiveElements = 'a, button, .portfolio__item, .service';
-  
+
   document.addEventListener('mouseenter', (e) => {
     if (e.target.matches(interactiveElements)) {
       const cursor = document.querySelector('.cursor');
@@ -933,7 +933,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }, true);
-  
+
   document.addEventListener('mouseleave', (e) => {
     if (e.target.matches(interactiveElements)) {
       const cursor = document.querySelector('.cursor');
