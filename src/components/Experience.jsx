@@ -3,9 +3,9 @@ import { portfolioData } from '../data/portfolioData';
 
 function Experience() {
   return (
-    <section className="experience" id="experience">
+    <section className="experience section--dark" id="experience">
       <div className="container">
-        <h2 className="section__title">Experience</h2>
+        <h2 className="section__title section__title--center">Experience</h2>
         <div className="timeline" id="timelineContainer">
           {portfolioData.experience.map((exp, index) => (
             <div className="timeline__item" key={index}>

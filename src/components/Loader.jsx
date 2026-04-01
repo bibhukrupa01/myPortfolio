@@ -8,12 +8,11 @@ function Loader({ onComplete, isGSAPLoaded }) {
     if (isGSAPLoaded) {
       gsap.to('.loader__spinner', {
         rotation: 360,
-        duration: 1,
+        duration: 0.8,
         ease: 'none',
         repeat: -1
       });
 
-      // Hide after a brief delay
       setTimeout(() => {
         gsap.to('#loader', {
           opacity: 0,
@@ -23,12 +22,12 @@ function Loader({ onComplete, isGSAPLoaded }) {
             if (onComplete) onComplete();
           }
         });
-      }, 2000);
+      }, 1500);
     } else {
       setTimeout(() => {
         setIsVisible(false);
         if (onComplete) onComplete();
-      }, 2000);
+      }, 1500);
     }
   }, [isGSAPLoaded, onComplete]);
 
@@ -37,7 +36,7 @@ function Loader({ onComplete, isGSAPLoaded }) {
   return (
     <div className="loader" id="loader">
       <div className="loader__spinner"></div>
-      <p className="loader__text">Almost Ready...</p>
+      <p className="loader__text">Loading...</p>
     </div>
   );
 }

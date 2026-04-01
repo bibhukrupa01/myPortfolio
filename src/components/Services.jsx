@@ -3,9 +3,11 @@ import { portfolioData } from '../data/portfolioData';
 
 function Services() {
   return (
-    <section className="services" id="services">
-      <div className="container">
-        <h2 className="section__title">Services</h2>
+    <section className="services section--light" id="services">
+      <div className="grid-pattern"></div>
+      
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <h2 className="section__title section__title--center">Services</h2>
         <div className="services__grid" id="servicesGrid">
           {portfolioData.services.map((service, index) => (
             <div className="service" key={index}>

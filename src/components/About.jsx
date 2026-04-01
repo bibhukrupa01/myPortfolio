@@ -5,11 +5,14 @@ function About() {
   const { personalInfo, skills } = portfolioData;
 
   return (
-    <section className="about" id="about">
-      <div className="container">
+    <section className="about section--light" id="about">
+      {/* Grid pattern overlay */}
+      <div className="grid-pattern"></div>
+      
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <h2 className="section__title">About Me</h2>
         <div className="about__grid">
           <div className="about__content">
-            <h2 className="section__title">About Me</h2>
             <p className="about__description">{personalInfo.description}</p>
             <div className="about__info">
               <div className="about__item">
@@ -27,7 +30,7 @@ function About() {
             </div>
           </div>
           <div className="about__skills">
-            <h3 className="about__skills-title">Skills</h3>
+            <h3 className="about__skills-title">Skills & Technologies</h3>
             <div className="skills" id="skillsContainer">
               {skills.map((skill, index) => (
                 <div className="skill" key={index}>

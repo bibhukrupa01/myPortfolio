@@ -6,7 +6,6 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Basic validation is handled by HTML5 required attribute
     setStatus('Sending...');
     
     setTimeout(() => {
@@ -17,8 +16,15 @@ function Contact() {
   };
 
   return (
-    <section className="contact" id="contact">
-      <div className="container">
+    <section className="contact section--dark" id="contact">
+      {/* Decorative orb */}
+      <div className="gradient-orb gradient-orb--blue" style={{ 
+        width: '500px', height: '500px', 
+        bottom: '-20%', left: '-10%',
+        opacity: 0.12
+      }}></div>
+      
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <h2 className="section__title">Get In Touch</h2>
         <div className="contact__grid">
           <div className="contact__info">
@@ -55,22 +61,22 @@ function Contact() {
           <form className="contact__form" id="contactForm" onSubmit={handleSubmit}>
             <div className="form-group">
               <label className="form-label">Name</label>
-              <input type="text" className="form-control" name="name" required />
+              <input type="text" className="form-control" name="name" placeholder="Your name" required />
             </div>
             <div className="form-group">
               <label className="form-label">Email</label>
-              <input type="email" className="form-control" name="email" required />
+              <input type="email" className="form-control" name="email" placeholder="your@email.com" required />
             </div>
             <div className="form-group">
               <label className="form-label">Subject</label>
-              <input type="text" className="form-control" name="subject" required />
+              <input type="text" className="form-control" name="subject" placeholder="How can I help?" required />
             </div>
             <div className="form-group">
               <label className="form-label">Message</label>
-              <textarea className="form-control" name="message" rows="5" required></textarea>
+              <textarea className="form-control" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
             </div>
             <button type="submit" className="btn btn--primary btn--full-width" disabled={status === 'Sending...'}>
-              {status || 'Send Message'}
+              {status || 'Send Message →'}
             </button>
           </form>
         </div>

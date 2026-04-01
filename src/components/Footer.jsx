@@ -8,9 +8,9 @@ function Footer({ isGSAPLoaded }) {
   const scrollToTop = () => {
     if (isGSAPLoaded) {
       gsap.to(window, {
-        duration: 1.5,
+        duration: 1.2,
         scrollTo: { y: 0 },
-        ease: "power2.inOut"
+        ease: "power3.inOut"
       });
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -21,7 +21,7 @@ function Footer({ isGSAPLoaded }) {
     <footer className="footer">
       <div className="container">
         <div className="footer__content">
-          <p>&copy; 2025 Bibhu Krupa Pradhan. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Bibhu Krupa Pradhan. All rights reserved.</p>
           <div className="footer__social">
             <a href="https://github.com/bibhukrupa01" target="_blank" rel="noreferrer">GitHub</a>
             <a href="https://linkedin.com/in/bibhukrupa01" target="_blank" rel="noreferrer">LinkedIn</a>

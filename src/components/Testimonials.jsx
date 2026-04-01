@@ -20,15 +20,21 @@ function Testimonials() {
   }, []);
 
   return (
-    <section className="testimonials" id="testimonials">
-      <div className="container">
-        <h2 className="section__title">Testimonials</h2>
+    <section className="testimonials section--light" id="testimonials">
+      <div className="grid-pattern"></div>
+      
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <h2 className="section__title section__title--center">Testimonials</h2>
         <div className="testimonials__slider" id="testimonialsSlider">
           {portfolioData.testimonials.map((testimonial, index) => (
             <div 
               key={index} 
               className={`testimonial ${index === current ? 'active' : ''}`}
-              style={{ display: index === current ? 'block' : 'none', opacity: index === current ? 1 : 0 }}
+              style={{ 
+                display: index === current ? 'block' : 'none', 
+                opacity: index === current ? 1 : 0,
+                transition: 'opacity 0.5s ease'
+              }}
             >
               <img src={testimonial.avatar} alt={testimonial.name} className="testimonial__avatar" loading="lazy" />
               <blockquote className="testimonial__quote">"{testimonial.quote}"</blockquote>

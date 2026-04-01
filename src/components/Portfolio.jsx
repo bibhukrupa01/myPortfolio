@@ -13,9 +13,16 @@ function Portfolio() {
   });
 
   return (
-    <section className="portfolio" id="portfolio">
-      <div className="container">
-        <h2 className="section__title">Portfolio</h2>
+    <section className="portfolio section--dark" id="portfolio">
+      {/* Decorative orb */}
+      <div className="gradient-orb gradient-orb--accent" style={{ 
+        width: '400px', height: '400px', 
+        top: '-10%', right: '-5%',
+        opacity: 0.15
+      }}></div>
+      
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <h2 className="section__title section__title--center">Portfolio</h2>
         <div className="portfolio__filter">
           <button 
             className={`portfolio__filter-btn ${filter === 'all' ? 'active' : ''}`} 
@@ -45,7 +52,9 @@ function Portfolio() {
                     <span key={i} className="portfolio__tech">{tech}</span>
                   ))}
                 </div>
-                <a href={project.link} className="portfolio__link">View Project →</a>
+                <a href={project.link} className="portfolio__link" target="_blank" rel="noreferrer">
+                  View Project <span>→</span>
+                </a>
               </div>
             </div>
           ))}
