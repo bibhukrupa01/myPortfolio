@@ -40,7 +40,7 @@ function Hero() {
       <div className="hero__container">
         <div className="hero__content">
           <div className="hero__text">
-            <h1 className="hero__name" ref={nameRef}>Bibhu Krupa Pradhan</h1>
+            <h1 className="hero__name" ref={nameRef}>BIBHU KRUPA PRADHAN</h1>
             <p className="hero__title">Full Stack Web Developer</p>
             <p className="hero__tagline">Crafting Digital Experiences with Precision</p>
             <a href="#contact" className="btn btn--primary hero__cta">

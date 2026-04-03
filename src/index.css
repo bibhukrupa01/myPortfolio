@@ -123,6 +123,15 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
+/* Base style for layered scroll sections */
+.scroll-panel {
+  position: relative;
+  width: 100%;
+  will-change: transform;
+  /* GSAP layering requires panels to be opaque if overlapping. 
+     The nested sections handle their own backgrounds. */
+}
+
 /* ============================================
    SECTION TITLE
    ============================================ */
@@ -222,7 +231,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
-  transition: all var(--transition-normal);
+  transition: all var(--transition-smooth);
   width: auto;
   max-width: 90%;
 }
@@ -231,34 +240,38 @@ h1, h2, h3, h4, h5, h6 {
   top: 0.8rem;
 }
 
-.nav.nav--hidden {
-  transform: translateX(-50%) translateY(-120%);
-}
+/* Nav is ALWAYS visible — no hidden state */
 
 .nav__container {
   display: flex;
   align-items: center;
   gap: 2rem;
   padding: 0.6rem 1.2rem;
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: var(--border-radius-pill);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  background: rgba(255, 255, 255, 0.08); /* White tint */
+  backdrop-filter: blur(32px) saturate(120%); /* More blur */
+  -webkit-backdrop-filter: blur(32px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Slightly brighter edge to pop */
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
 }
 
 .nav__logo {
   font-size: 1.3rem;
   font-weight: var(--font-weight-extrabold);
   color: var(--color-white);
+  mix-blend-mode: difference;
   letter-spacing: -0.02em;
   padding: 0 0.5rem;
   white-space: nowrap;
+  transition: all var(--transition-fast);
 }
 
 .nav__logo:hover {
   color: var(--color-accent);
+  text-shadow: 0 0 20px var(--color-accent-glow);
 }
 
 .nav__menu {
@@ -267,39 +280,108 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.2rem;
 }
 
+/* ---- Apple Glass Effect on Nav Links ---- */
 .nav__link {
-  color: rgba(255, 255, 255, 0.7);
+  display: inline-block;
+  color: var(--color-white); 
+  mix-blend-mode: difference;
   font-size: 0.85rem;
   font-weight: var(--font-weight-medium);
   padding: 0.5rem 0.9rem;
   border-radius: var(--border-radius-pill);
-  transition: all var(--transition-fast);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Glass background on hover */
+.nav__link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--border-radius-pill);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.03) 40%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: -2;
+}
+
+/* Light sweep / shine effect */
+.nav__link::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
 }
 
 .nav__link:hover {
   color: var(--color-white);
-  background: rgba(255, 255, 255, 0.08);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-.nav__link::after {
-  display: none;
+.nav__link:hover::before {
+  opacity: 1;
 }
 
+.nav__link:hover::after {
+  left: 100%;
+}
+
+/* CTA button with glass */
 .nav__cta {
-  background: var(--color-white);
+  background: rgba(255, 255, 255, 0.95);
   color: var(--color-black);
   font-size: 0.85rem;
   font-weight: var(--font-weight-semibold);
   padding: 0.5rem 1.2rem;
   border-radius: var(--border-radius-pill);
-  transition: all var(--transition-fast);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav__cta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav__cta:hover {
   background: var(--color-accent);
   color: var(--color-white);
+  box-shadow: 0 4px 20px var(--color-accent-glow);
+}
+
+.nav__cta:hover::after {
+  left: 100%;
 }
 
 /* Mobile Toggle */
@@ -420,7 +502,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero__name {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(1.6rem, 5.5vw, 6rem); /* Scaled down slightly for mobile to accommodate 19 chars */
   font-weight: var(--font-weight-black);
   letter-spacing: -0.04em;
   line-height: 1;
@@ -430,6 +512,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-background-clip: unset;
   -webkit-text-fill-color: unset;
   background-clip: unset;
+  white-space: nowrap;
 }
 
 .hero__name .char {
@@ -733,14 +816,20 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--border-radius-lg);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: all var(--transition-smooth);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform;
 }
 
 .portfolio__item:hover {
-  transform: translateY(-8px);
+  transform: translateY(-12px) rotateX(3deg) rotateY(-2deg) scale(1.02);
   border-color: rgba(255, 107, 53, 0.3);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(255, 107, 53, 0.1);
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.5), 
+    0 0 50px rgba(255, 107, 53, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .portfolio__image {
@@ -835,9 +924,12 @@ h1, h2, h3, h4, h5, h6 {
   padding: 2.5rem 2rem;
   border-radius: var(--border-radius-lg);
   border: 1px solid rgba(0, 0, 0, 0.06);
-  transition: all var(--transition-normal);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  will-change: transform;
 }
 
 .service::before {
@@ -858,8 +950,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .service:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-10px) rotateX(4deg) scale(1.02);
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.18),
+    0 0 0 1px rgba(255, 107, 53, 0.1);
   border-color: rgba(255, 107, 53, 0.15);
 }
 
@@ -954,12 +1048,16 @@ h1, h2, h3, h4, h5, h6 {
   width: 45%;
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: all var(--transition-normal);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+  perspective: 800px;
+  will-change: transform;
 }
 
 .timeline__content:hover {
   border-color: rgba(255, 107, 53, 0.2);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 107, 53, 0.08);
+  transform: translateY(-6px) rotateY(3deg) scale(1.02);
 }
 
 .timeline__item:nth-child(odd) .timeline__content {
@@ -1652,4 +1750,207 @@ textarea.form-control {
   .testimonial {
     padding: 2rem 1.5rem;
   }
+}
+
+/* ============================================
+   3D PERSPECTIVE & TILT EFFECTS
+   ============================================ */
+
+/* 3D perspective container for sections */
+.perspective-container {
+  perspective: 1200px;
+  perspective-origin: center;
+}
+
+/* Smooth text reveal classes — used by GSAP */
+.text-reveal {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.text-reveal-line {
+  overflow: hidden;
+  display: block;
+}
+
+.text-reveal-line-inner {
+  display: block;
+  transform: translateY(100%) rotateX(-45deg);
+  transform-origin: center top;
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.6s ease;
+}
+
+.text-reveal-line-inner.revealed {
+  transform: translateY(0) rotateX(0);
+  opacity: 1;
+}
+
+/* 3D Float effect for hero elements */
+.hero__3d-float {
+  animation: float3d 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+@keyframes float3d {
+  0%, 100% {
+    transform: translateY(0) rotateX(0) rotateY(0);
+  }
+  25% {
+    transform: translateY(-10px) rotateX(2deg) rotateY(1deg);
+  }
+  50% {
+    transform: translateY(-5px) rotateX(-1deg) rotateY(-2deg);
+  }
+  75% {
+    transform: translateY(-12px) rotateX(1deg) rotateY(2deg);
+  }
+}
+
+/* Interactive 3D tilt mixin — applied via JS mousemove */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+}
+
+.tilt-card__inner {
+  transform: translateZ(30px);
+  transition: transform 0.3s ease;
+}
+
+.tilt-card:hover .tilt-card__inner {
+  transform: translateZ(50px);
+}
+
+/* Shine overlay for 3D cards */
+.tilt-card__shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tilt-card:hover .tilt-card__shine {
+  opacity: 1;
+}
+
+/* ============================================
+   SMOOTH SCROLL TEXT ANIMATION UTILITIES
+   ============================================ */
+
+/* Paragraph text that fades in & up on scroll */
+.scroll-text {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-text.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Word-by-word reveal */
+.word-reveal .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px) rotateX(-30deg);
+  transform-origin: bottom center;
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.word-reveal .word.revealed {
+  opacity: 1;
+  transform: translateY(0) rotateX(0);
+}
+
+/* Stagger delay utility */
+.stagger-1 { transition-delay: 0.05s; }
+.stagger-2 { transition-delay: 0.1s; }
+.stagger-3 { transition-delay: 0.15s; }
+.stagger-4 { transition-delay: 0.2s; }
+.stagger-5 { transition-delay: 0.25s; }
+.stagger-6 { transition-delay: 0.3s; }
+.stagger-7 { transition-delay: 0.35s; }
+.stagger-8 { transition-delay: 0.4s; }
+
+/* ============================================
+   3D DEPTH STYLES FOR ABOUT/CONTACT SECTIONS
+   ============================================ */
+
+.about__skills-title,
+.contact__subtitle {
+  transform-style: preserve-3d;
+}
+
+/* Subtle 3D hover on info items */
+.about__item {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+
+.about__item:hover {
+  transform: translateX(8px) translateZ(10px);
+}
+
+/* Contact items 3D lift */
+.contact__item {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+
+.contact__item:hover {
+  transform: translateX(8px) scale(1.02);
+}
+
+/* Testimonial card 3D */
+.testimonial {
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+/* Skill pill 3D pop */
+.skill {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transform-style: preserve-3d;
+}
+
+.skill:hover {
+  transform: translateY(-4px) scale(1.08) rotateX(5deg) !important;
+  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.15);
+}
+
+/* Hero tag 3D float */
+.hero__tag {
+  transform-style: preserve-3d;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.hero__tag:hover {
+  transform: translateY(-6px) rotateY(8deg) scale(1.08) !important;
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.2);
+}
+
+/* Portfolio tech pills 3D */
+.portfolio__tech {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio__tech:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: rgba(255, 107, 53, 0.12);
+  border-color: rgba(255, 107, 53, 0.3);
+  color: var(--color-accent);
 }
